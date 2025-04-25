@@ -21,7 +21,7 @@ export const Header = () => {
         </div>
         <div>
           <a
-            href="https://github.com/N0edL/R.E.P.O-Save-Editor"
+            href="https://github.com/jtarchie/repo-app/"
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-ghost btn-sm normal-case text-xs"
