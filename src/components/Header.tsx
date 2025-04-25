@@ -17,9 +17,33 @@ export const Header = () => {
               d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
             />
           </svg>
-          <h1 className="text-xl font-bold">REPO Save File Decryptor</h1>
+          <h1 className="text-xl font-bold">
+            <a href="/">REPO Save File Decryptor</a>
+          </h1>
         </div>
-        <div>
+        <div className="flex items-center gap-2">
+          <a
+            href="/help"
+            className="btn btn-ghost btn-sm normal-case text-xs"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              className="mr-1"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            Help
+          </a>
           <a
             href="https://github.com/jtarchie/repo-app/"
             target="_blank"

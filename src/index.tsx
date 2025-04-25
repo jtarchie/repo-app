@@ -9,6 +9,7 @@ import {
 import { Header } from "./components/Header.jsx";
 import { Home } from "./pages/Home/index.jsx";
 import { NotFound } from "./pages/_404.jsx";
+import { Help } from "./pages/Help/index.jsx";
 import "./style.css";
 
 export function App() {
@@ -17,6 +18,7 @@ export function App() {
       <Header />
       <Router>
         <Route path="/" component={Home} />
+        <Route path="/help" component={Help} />
         <Route default component={NotFound} />
       </Router>
     </LocationProvider>
