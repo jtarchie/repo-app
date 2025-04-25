@@ -36,16 +36,6 @@ export const JSONViewer = ({ data, fileName, onReset }: JSONViewerProps) => {
     }
   };
 
-  const handleSaveChanges = () => {
-    try {
-      const updatedData = JSON.parse(editableJson);
-      setJsonData(updatedData);
-      setJsonError(null);
-    } catch (_error) {
-      setJsonError("Invalid JSON format. Unable to save changes.");
-    }
-  };
-
   const handlePasswordChange = (e: Event) => {
     const target = e.target as HTMLInputElement;
     setPassword(target.value);
@@ -62,20 +52,20 @@ export const JSONViewer = ({ data, fileName, onReset }: JSONViewerProps) => {
   };
 
   const handleDownload = async () => {
-    if (!jsonData) return;
-
     try {
+      // First validate and parse the current JSON from editor
+      const updatedData = JSON.parse(editableJson);
+      setJsonData(updatedData);
+      setJsonError(null);
+
       setIsExporting(true);
 
       // Import the encryption function
       const { encryptES3 } = await import("../utils/crypto");
 
-      // Convert JSON object to string
-      const jsonString = JSON.stringify(jsonData);
-
       // Encrypt the JSON
       const encryptedData = await encryptES3(
-        jsonString,
+        editableJson, // Use the edited JSON directly
         useDefaultPassword ? DEFAULT_PASSWORD : password,
       );
 
@@ -99,12 +89,19 @@ export const JSONViewer = ({ data, fileName, onReset }: JSONViewerProps) => {
 
       // Clean up
       URL.revokeObjectURL(url);
+
+      // Close the modal
+      document.getElementById("download_modal")?.close();
     } catch (error) {
-      alert(
-        `Error exporting file: ${
-          error instanceof Error ? error.message : "Unknown error"
-        }`,
-      );
+      if (error instanceof SyntaxError) {
+        setJsonError("Invalid JSON format. Unable to download.");
+      } else {
+        alert(
+          `Error exporting file: ${
+            error instanceof Error ? error.message : "Unknown error"
+          }`,
+        );
+      }
     } finally {
       setIsExporting(false);
     }
@@ -147,14 +144,6 @@ export const JSONViewer = ({ data, fileName, onReset }: JSONViewerProps) => {
               className="btn btn-outline btn-sm"
             >
               Upload New File
-            </button>
-            <button
-              type="button"
-              onClick={handleSaveChanges}
-              className="btn btn-primary btn-sm"
-              disabled={!!jsonError}
-            >
-              Save Changes
             </button>
             <button
               type="button"
