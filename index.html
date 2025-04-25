@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>REPO Save File Decryptor</title>
+    <!-- Tailwind CSS and DaisyUI CDN links -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure DaisyUI theme -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {},
+        },
+        daisyui: {
+          themes: ["light", "dark"],
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script prerender type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
