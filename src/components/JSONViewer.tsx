@@ -116,24 +116,25 @@ export const JSONViewer = ({ data, fileName, onReset }: JSONViewerProps) => {
   return (
     <div className="card w-full bg-base-200 shadow-xl">
       <div className="card-body p-4">
-        {showEditor ? (
-          <>
-            <FileHeader
-              fileName={fileName}
-              jsonError={jsonError}
-              onReset={handleReset}
-              onDownload={() => document.getElementById("download_modal")?.showModal()}
-              isDownloadDisabled={!!jsonError}
-            />
+        {showEditor
+          ? (
+            <>
+              <FileHeader
+                fileName={fileName}
+                jsonError={jsonError}
+                onReset={handleReset}
+                onDownload={() =>
+                  document.getElementById("download_modal")?.showModal()}
+                isDownloadDisabled={!!jsonError}
+              />
 
-            <JSONEditor
-              value={editableJson}
-              onChange={handleEditorChange}
-            />
-          </>
-        ) : (
-          <FileUploader />
-        )}
+              <JSONEditor
+                value={editableJson}
+                onChange={handleEditorChange}
+              />
+            </>
+          )
+          : <FileUploader />}
       </div>
 
       {showEditor && (
