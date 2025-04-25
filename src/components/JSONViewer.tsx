@@ -79,10 +79,8 @@ export const JSONViewer = ({ data, fileName, onReset }: JSONViewerProps) => {
       const link = document.createElement("a");
       link.href = url;
 
-      // Generate download filename (replace extension with .save if it exists)
-      const downloadName = fileName.includes(".")
-        ? fileName.substring(0, fileName.lastIndexOf(".")) + ".save"
-        : fileName + ".save";
+      // Generate download filename - append ".edited" to the original filename
+      const downloadName = fileName + ".edited";
 
       link.download = downloadName;
       link.click();
